@@ -333,6 +333,7 @@ static void osdDrawSingleElement(uint8_t item)
             }
 
             osdDrawSingleElement(OSD_HORIZON_SIDEBARS);
+        }
 #else
             brainFpvOsdArtificialHorizon();
             break;
@@ -518,7 +519,7 @@ void osdInit(displayPort_t *osdDisplayPortToUse)
     displayClearScreen(osdDisplayPort);
 
     // display logo and help
-    char x = 160;
+    x = 160;
     for (int i = 1; i < 5; i++) {
         for (int j = 3; j < 27; j++) {
             if (x != 255)
@@ -526,19 +527,18 @@ void osdInit(displayPort_t *osdDisplayPortToUse)
         }
     }
 
-    char string_buffer[30];
     sprintf(string_buffer, "BF VERSION: %s", FC_VERSION_STRING);
     displayWrite(osdDisplayPort, 5, 6, string_buffer);
 #ifdef CMS
     displayWrite(osdDisplayPort, 7, 7,  CMS_STARTUP_HELP_TEXT1);
     displayWrite(osdDisplayPort, 11, 8, CMS_STARTUP_HELP_TEXT2);
     displayWrite(osdDisplayPort, 11, 9, CMS_STARTUP_HELP_TEXT3);
-#endif
+#endif // ???
 
     displayResync(osdDisplayPort);
 
     refreshTimeout = 4 * REFRESH_1S;
-#else
+// #else // ???
     osdDisplayPort = osdDisplayPortToUse;
     cmsDisplayPortRegister(osdDisplayPortToUse);
 #endif /* BRAINRE1 */
@@ -779,9 +779,9 @@ void osdUpdate(timeUs_t currentTimeUs)
     } else { // rest of time redraw screen 10 chars per idle so it doesn't lock the main idle
         displayDrawScreen(osdDisplayPort);
     }
-#else
+#else // BRAINRE1
     osdRefresh(currentTimeUs);
-#endif
+#endif // BRAINRE1
 
 #ifdef CMS
     // do not allow ARM if we are in menu

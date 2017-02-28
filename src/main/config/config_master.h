@@ -231,9 +231,9 @@ typedef struct master_s {
 # ifdef USE_MSP_DISPLAYPORT
     displayPortProfile_t displayPortProfileMsp;
 # endif
-#if defined(USE_MAX7456) || defined(USE_BRAINFPV_OSD)
+// #if defined(USE_MAX7456) || defined(USE_BRAINFPV_OSD) // temporary
     displayPortProfile_t displayPortProfileMax7456;
-# endif
+// # endif
 
 #ifdef USE_SDCARD
     sdcardConfig_t sdcardConfig;

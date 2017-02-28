@@ -357,6 +357,7 @@ void bmi160ExtiHandler(extiCallbackRec_t *cb)
 {
     gyroDev_t *gyro = container_of(cb, gyroDev_t, exti);
     gyro->dataReady = true;
+}
 #endif
 
 static void bmi160IntExtiInit(gyroDev_t *gyro)

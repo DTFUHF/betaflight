@@ -326,8 +326,10 @@ LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_f411.ld
 STARTUP_SRC     = startup_stm32f411xe.s
 else ifeq ($(TARGET),$(filter $(TARGET),$(F405_TARGETS)))
 DEVICE_FLAGS    = -DSTM32F40_41xxx
-LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_f405.ld
-STARTUP_SRC     = startup_stm32f40xx.s
+#LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_f405.ld
+LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_f405_chibios_drbl.ld
+#STARTUP_SRC     = startup_stm32f40xx.s
+#STARTUP_SRC     = startup_chibios_stm32F4xx.s
 else ifeq ($(TARGET),$(filter $(TARGET),$(F446_TARGETS)))
 DEVICE_FLAGS    = -DSTM32F446xx
 ifneq ($(filter CHIBIOS,$(FEATURES)),)
@@ -663,7 +665,6 @@ HIGHEND_SRC = \
             cms/cms_menu_misc.c \
             cms/cms_menu_osd.c \
             cms/cms_menu_vtx.c \
-            cms/cms_menu_brainre1.c \
             common/colorconversion.c \
             drivers/display_ug2864hsweg01.c \
             drivers/light_ws2811strip.c \
@@ -853,7 +854,7 @@ STM32F30x_COMMON_SRC = \
             drivers/system_stm32f30x.c \
             drivers/timer_stm32f30x.c
 
-ifeq ($(TARGET),$(filter $(TARGET),$(F446_TARGETS)))
+#ifeq ($(TARGET),$(filter $(TARGET),$(F446_TARGETS)))
 ifneq ($(filter CHIBIOS,$(FEATURES)),)
 STM32F4xx_COMMON_SRC = \
             startup_chibios_stm32F4xx.s \
@@ -884,7 +885,7 @@ STM32F4xx_COMMON_SRC = \
             drivers/system_stm32f4xx.c \
             drivers/timer_stm32f4xx.c
 endif
-endif
+#endif
 
 STM32F7xx_COMMON_SRC = \
             target/system_stm32f7xx.c \

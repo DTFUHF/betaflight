@@ -50,6 +50,7 @@ void cycleCounterInit(void)
 
 static volatile int sysTickPending = 0;
 
+#if !defined(USE_CHIBIOS)
 void SysTick_Handler(void)
 {
     ATOMIC_BLOCK(NVIC_PRIO_MAX) {
@@ -62,6 +63,7 @@ void SysTick_Handler(void)
     HAL_IncTick();
 #endif
 }
+#endif
 
 // Return system uptime in microseconds (rollover in 70minutes)
 
